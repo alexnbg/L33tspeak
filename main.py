@@ -29,6 +29,26 @@ dict_L33t = {
     ' ': ' '
 }
 
+
+
+
+# new methods
+
+def eng_L33t(string:str):
+    ans = string
+    for ch in string:
+        ans = ans.replace(ch, dict_L33t[ch])
+    print ('Translated phrase:')
+    print (ans)
+
+def L33t_eng(string:str):
+    ans = string
+    for el in dict_L33t.values():
+        ans = ans.replace(el, list(dict_L33t.keys())[list(dict_L33t.values()).index(el)])
+    print ('Translated phrase:')
+    print (ans)
+
+
 def english_to_L33t(string:str):
     ans = []
     for ch in string:
@@ -73,13 +93,13 @@ def translating():
                 break
 
         if leet:
-            L33t_to_english(phrase)
+            L33t_eng(phrase)
         else:
             eng = input('Is the phrase in english? (y/n): ')
             if eng == 'n':
-                L33t_to_english(phrase)
+                L33t_eng(phrase)
             elif eng == 'y':
-                english_to_L33t(phrase)
+                eng_L33t(phrase)
 
 
 translating()
