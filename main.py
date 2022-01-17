@@ -1,4 +1,6 @@
-dict_L33t = {
+# pylint: disable=W1401, C0114, C0116
+
+dict_l33t = {
     'a': '4',
     'b': '6',
     'c': 'c',
@@ -31,37 +33,38 @@ dict_L33t = {
 
 # new methods
 
-def eng_L33t(string: str):
+def eng_l33t(string: str):
     ans = string
-    for ch in string:
-        ans = ans.replace(ch, dict_L33t[ch])
+    for char in string:
+        ans = ans.replace(char, dict_l33t[char])
     print('Translated phrase:')
     print(ans)
 
 
-def L33t_eng(string: str):
-    ans = string
-    for el in dict_L33t.values():
-        ans = ans.replace(el, list(dict_L33t.keys())[
-                          list(dict_L33t.values()).index(el)])
+def l33t_eng(string: str):
+    revdict = {v: k for k, v in dict_l33t.items()}
+    for elem in revdict:
+        string = string.replace(elem, revdict[elem])
     print('Translated phrase:')
-    print(ans)
+    print(string)
 
 
-def english_to_L33t(string: str):
+# old methods
+
+def english_to_l33t(string: str):
     ans = []
-    for ch in string:
-        if ch in dict_L33t.keys():
-            ans.append(dict_L33t[ch])
+    for char in string:
+        if char in dict_l33t:
+            ans.append(dict_l33t[char])
         else:
-            print('Unknown character: ', ch)
+            print('Unknown character: ', char)
     print('Translated phrase:')
     print(''.join(ans))
 
 
-def L33t_to_english(string: str):
+def l33t_to_english(string: str):
     ans = []
-    revdict = {v: k for k, v in dict_L33t.items()}
+    revdict = {v: k for k, v in dict_l33t.items()}
     i = 0
     while i < len(string):
         if string[i] in revdict.keys():
@@ -88,21 +91,19 @@ def translating():
     leet = None
 
     if phrase:
-        for ch in phrase:
-            if ch in diff:
+        for char in phrase:
+            if char in diff:
                 leet = True
                 break
 
         if leet:
-            L33t_eng(phrase)
+            l33t_eng(phrase)
         else:
             eng = input('Is the phrase in english? (y/n): ')
             if eng == 'n':
-                L33t_eng(phrase)
+                l33t_eng(phrase)
             elif eng == 'y':
-                eng_L33t(phrase)
+                eng_l33t(phrase)
 
 
 translating()
-
-print(123)
